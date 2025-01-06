@@ -161,12 +161,12 @@ def display_progress_dashboard():
             st.info("Note: The link will only work while the app is running.")
 
 def main():
-    st.set_page_config(page_title="AI Tutor 📚🤖", page_icon="assets/The Crest Logo.png")
+    st.set_page_config(page_title="AI Tutor 📚🤖", page_icon="🤖")
     
     # Header with logo
     col1, col2 = st.columns([1, 4])
     with col1:
-        st.image("AI_Tutor/assets/The Crest Logo.png", width=100)
+        st.image("https://github.com/Anandharajan/AI-tutor/blob/main/assets/The%20Crest%20Logo.png", width=100)
     with col2:
         st.title("AI Tutor 📚🤖")
         st.caption("Learn interactively with our AI-powered tutor. We at 'The Crest' build solutions to empower students")
