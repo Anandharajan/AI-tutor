@@ -1,6 +1,5 @@
 # AI Tutor Application
-![AI Tutor]
-
+✨ **Click the link below to explore the app!** 🚀📚
 https://thecrest-aitutor.streamlit.app/
 
 An interactive learning platform powered by Google's Gemini AI.
