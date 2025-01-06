@@ -1,7 +1,7 @@
 # AI Tutor Application
-![AI Tutor]((https://thecrest-aitutor.streamlit.app/))
+![AI Tutor]
 
-https://thecrest-aitutor.streamlit.app/?embed_options=show_padding,show_footer,light_theme
+https://thecrest-aitutor.streamlit.app/
 
 An interactive learning platform powered by Google's Gemini AI.
 
