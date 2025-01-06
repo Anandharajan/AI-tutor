@@ -166,7 +166,8 @@ def main():
     # Header with logo
     col1, col2 = st.columns([1, 4])
     with col1:
-        st.image("https://github.com/Anandharajan/AI-tutor/blob/main/assets/The%20Crest%20Logo.png", width=100)
+        image_url = "https://raw.githubusercontent.com/Anandharajan/AI-tutor/main/assets/The%20Crest%20Logo.png"
+        st.image(image_url, caption="The Crest Logo", use_column_width=True)
     with col2:
         st.title("AI Tutor 📚🤖")
         st.caption("Learn interactively with our AI-powered tutor. We at 'The Crest' build solutions to empower students")
