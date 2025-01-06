@@ -1,5 +1,5 @@
 # AI Tutor Application
-![AI Tutor Banner](assets/The Crest Logo.png)
+![AI Tutor Banner]([assets/The Crest Logo.png](https://github.com/Anandharajan/AI-tutor/blob/main/assets/The%20Crest%20Logo.png))
 
 An interactive learning platform powered by Google's Gemini AI.
 
