@@ -313,11 +313,20 @@ def main():
                 user_answers = []
                 for i, question in enumerate(questions):
                     st.markdown(f"**{i+1}. {question['question']}**")
+                    # Display the full answer choices with text
+                    options_with_text = [
+                        f"{question['options'][0]}",
+                        f"{question['options'][1]}", 
+                        f"{question['options'][2]}",
+                        f"{question['options'][3]}"
+                    ]
                     user_answer = st.radio(
                         f"Select your answer for question {i+1}",
-                        options=["A", "B", "C", "D"],
+                        options=options_with_text,
                         key=f"quiz_q_{i}"
                     )
+                    # Extract just the letter (A/B/C/D) from the selected answer
+                    user_answer = user_answer[0] if user_answer else ""
                     user_answers.append(user_answer)
                 
                 if st.button("Submit Quiz"):
