@@ -167,7 +167,7 @@ def main():
     col1, col2 = st.columns([1, 4])
     with col1:
         image_url = "https://raw.githubusercontent.com/Anandharajan/AI-tutor/main/assets/The%20Crest%20Logo.png"
-        st.image(image_url, caption="Educate-Empower-Elevate", use_column_width=True)
+        st.image(image_url, caption="Educate-Empower-Elevate", use_container_width=True)
     with col2:
         st.title("AI Tutor 📚🤖")
         st.caption("Learn interactively with our AI-powered tutor. We at 'The Crest' build solutions to empower students")
