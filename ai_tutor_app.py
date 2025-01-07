@@ -8,7 +8,7 @@ if 'quiz_history' not in st.session_state:
     st.session_state['quiz_history'] = []
 
 def calculate_score(user_answers, correct_answers):
-    correct_count = sum([ua == ca for ua, ca in zip(user_answers, correct_answers)])
+    correct_count = sum([ua[0] == ca for ua, ca in zip(user_answers, correct_answers)])
     score = (correct_count/len(user_answers))*100 if user_answers else 0
     return score
 
@@ -304,14 +304,21 @@ def main():
                     st.error("Failed to parse any valid quiz questions. Please try again with a different topic.")
                     return
                 
-                quiz_data = {
-                    "questions": questions,
-                    "correct_answers": correct_answers
-                }
+                # Store quiz data in session state if not already present
+                if 'current_quiz' not in st.session_state:
+                    st.session_state['current_quiz'] = {
+                        "data": {
+                            "questions": questions,
+                            "correct_answers": correct_answers
+                        },
+                        "user_answers": [None] * len(questions)
+                    }
+                
+                quiz_data = st.session_state['current_quiz']['data']
+                user_answers = st.session_state['current_quiz']['user_answers']
                 
                 st.markdown("### Quiz")
-                user_answers = []
-                for i, question in enumerate(questions):
+                for i, question in enumerate(quiz_data['questions']):
                     st.markdown(f"**{i+1}. {question['question']}**")
                     # Display the full answer choices with text
                     options_with_text = [
@@ -320,14 +327,25 @@ def main():
                         f"{question['options'][2]}",
                         f"{question['options'][3]}"
                     ]
+                    
+                    # Use a unique key combining quiz topic and question index
+                    unique_key = f"{quiz_topic}_q_{i}"
+                    
+                    # Get current answer or None if not answered yet
+                    current_answer = user_answers[i]
+                    
+                    # Create radio button with current selection
                     user_answer = st.radio(
                         f"Select your answer for question {i+1}",
                         options=options_with_text,
-                        key=f"quiz_q_{i}"
+                        index=options_with_text.index(current_answer) if current_answer else 0,
+                        key=unique_key
                     )
-                    # Extract just the letter (A/B/C/D) from the selected answer
-                    user_answer = user_answer[0] if user_answer else ""
-                    user_answers.append(user_answer)
+                    
+                    # Update answer in session state
+                    if user_answer:
+                        user_answers[i] = user_answer  # Store the full selected answer text
+                        st.session_state['current_quiz']['user_answers'] = user_answers
                 
                 if st.button("Submit Quiz"):
                     process_quiz_submission(quiz_topic, quiz_data, user_answers)
