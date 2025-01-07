@@ -43,7 +43,7 @@ def display_quiz_details(quiz_record):
         st.markdown(f"**Question {i+1}:** {question['question']}")
         st.markdown(f"- Your Answer: {user_answer}")
         st.markdown(f"- Correct Answer: {correct_answer}")
-        st.markdown(f"- Result: {'✅ Correct' if user_answer == correct_answer else '❌ Incorrect'}")
+        st.markdown(f"- Result: {'✅ Correct' if user_answer[0] == correct_answer else '❌ Incorrect'}")
         st.markdown("---")
 
 def generate_pdf_report(quiz_history):
@@ -79,7 +79,7 @@ def generate_pdf_report(quiz_history):
             pdf.cell(200, 10, txt=f"Question {i+1}: {question['question']}", ln=1)
             pdf.cell(200, 10, txt=f"- Your Answer: {user_answer}", ln=1)
             pdf.cell(200, 10, txt=f"- Correct Answer: {correct_answer}", ln=1)
-            pdf.cell(200, 10, txt=f"- Result: {'Correct' if user_answer == correct_answer else 'Incorrect'}", ln=1)
+            pdf.cell(200, 10, txt=f"- Result: {'✅ Correct' if user_answer[0] == correct_answer else '❌ Incorrect'}", ln=1)
             pdf.ln(3)
         pdf.ln(10)
     
@@ -167,7 +167,7 @@ def main():
     col1, col2 = st.columns([1, 4])
     with col1:
         image_url = "https://raw.githubusercontent.com/Anandharajan/AI-tutor/main/assets/The%20Crest%20Logo.png"
-        st.image(image_url, caption="Educate-Empower-Elevate", use_container_width=True)
+        st.image(image_url, caption="Educate-Empower-Elevate", use_column_width=True)
     with col2:
         st.title("AI Tutor 📚🤖")
         st.caption("Learn interactively with our AI-powered tutor. We at 'The Crest' build solutions to empower students")
